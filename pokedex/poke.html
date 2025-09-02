@@ -6,16 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vanilla JS Webpage</title>
     <script src="https://cdn.tailwindcss.com"></script>
-   
-
 </head>
 
 <body class="h-screen">
+    <h1 class="text-center text-4xl">Pokedex</h1>
+    <div id="cards-container" class="grid md:grid-cols-10 gap-4 auto-rows-min   ">
 
-    <div id = "cards-container" class="grid md:grid-cols-10 gap-4 auto-rows-min   ">
 
-
-        <div id = "template-card" class="bg-white rounded-lg shadow-md p-4 max-w-sm invisible">
+        <div id="card-prefab" class="bg-white rounded-lg shadow-md p-4 max-w-sm invisible">
 
 
             <!-- Top section with text and tiny image -->
@@ -39,7 +37,7 @@
             </div>
 
         </div>
- 
+
 
 
 
