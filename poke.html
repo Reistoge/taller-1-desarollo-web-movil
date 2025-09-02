@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JS Webpage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+
+</head>
+
+<body class="h-screen">
+
+    <div id = "cards-container" class="grid md:grid-cols-10 gap-4 auto-rows-min   ">
+
+
+        <div id = "template-card" class="bg-white rounded-lg shadow-md p-4 max-w-sm invisible">
+
+
+            <!-- Top section with text and tiny image -->
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-sm font-medium">Card Title</span>
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngarts.com%2Ffiles%2F4%2FPokeball-PNG-Image-Background.png&f=1&nofb=1&ipt=47e481b585e806008d7f8c355bcb803dc9624864d3406006fd268a41222f5bcb"
+                    alt="tiny icon" class="w-1/12 h-auto aspect-square">
+            </div>
+
+
+
+            <!-- Center image -->
+            <div class="flex justify-center">
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.aRRIphtqKuoY8DYCEvprRQHaIC%3Fpid%3DApi&f=1&ipt=e0aa5b4534a8e60ddbd80f4d4489483d4b27c960260962645e18831b1e6382eb"
+                    alt="main image" class="w-3/4 h-auto aspect-square object-cover rounded">
+            </div>
+            <!-- Two inline colored texts above main image -->
+            <div class="flex gap-2 mb-2">
+                <span class="text-red-500 text-sm font-semibold">Type 1</span>
+                <span class="text-blue-500 text-sm font-semibold">Type 2</span>
+            </div>
+
+        </div>
+ 
+
+
+
+    </div>
+    <script src="pokeApi.js"> </script>
+</body>
+
+</html>
