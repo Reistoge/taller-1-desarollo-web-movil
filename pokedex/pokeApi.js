@@ -10,7 +10,7 @@ const cardsCointainer = document.getElementById("cards-container");
 // const response = await fetch('https://pokeapi.co/api/v2/pokemon/ditto');
 
 // requesting a pokemon.
-num = 1000;
+num = 1025;
 for (let i = 0; i < num; i++) {
   const request = "https://pokeapi.co/api/v2/pokemon/" + i + "/";
   const r = fetch(request)
