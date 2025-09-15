@@ -4,54 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller 1</title>
+    <title>Vanilla JS Webpage</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    
-
 </head>
 
-<body class="mb-0 min-h-screen flex flex-col"></body>
-    <h1 class="text-4xl font-bold text-center text-blue-600 mb-8 m-10">Consumo de Api's</h1>
-    <div class="flex flex-col gap-y-2 bg-indigo-500 bg-opacity-50 rounded-lg p-2 mx-[25%] my-[10%] "  
-        id="pokemon-buttons">
-            <button
-                class=" bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition duration-200 flex items-center justify-center h-20 ">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class=" ">
-                <p class="mx-5" >Pokemone</p>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class=" transform scale-x-[-1]">
-            </button>
-        <button
-            class=" bg-green-500 hover:bg-green-600 text-white font-semibold   rounded-lg transition duration-200 flex items-center justify-center h-20  ">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class=" ">
-            <p class=mx-5>A</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class=" transform scale-x-[-1]">
-        </button>
-        <button
-            class=" bg-green-500 hover:bg-green-600 text-white font-semibold   rounded-lg transition duration-200 flex items-center justify-center h-20  ">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class=" ">
-            <p class=mx-5>B</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class=" transform scale-x-[-1]">
-        </button>
-        <button
-            class=" bg-green-500 hover:bg-green-600 text-white font-semibold   rounded-lg transition duration-200 flex items-center justify-center h-20 ">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class=" ">
-            <p class=mx-5>C</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class=" transform scale-x-[-1]">
-        </button>
-    </div>
+<body class="h-screen">
+    <h1 class="text-center text-4xl">Pokedex</h1>
+    <div id="cards-container" class="grid md:grid-cols-7 gap-4 auto-rows-min   ">
 
-    <footer class="bg-gray-800 text-white font-semibold text-sm pb-1 pl-2 py-4 mt-auto">
-        <p>Footer</p>
-    </footer>
+
+        <div id="card-prefab" class="bg-white rounded-lg shadow-md p-4 max-w-sm invisible">
+            <!-- Top section with text and tiny image -->
+            <div class="flex items-center justify-between mb-4">
+                <span id="pokemon-span" class="text-sm font-medium ">Card Title</span>
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngarts.com%2Ffiles%2F4%2FPokeball-PNG-Image-Background.png&f=1&nofb=1&ipt=47e481b585e806008d7f8c355bcb803dc9624864d3406006fd268a41222f5bcb"
+                    alt="tiny icon" class="w-1/12 h-auto aspect-square">
+            </div>
+
+
+
+            <!-- Center image -->
+            <div class="flex justify-center">
+                <img id = "card-prefab-center-image" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.aRRIphtqKuoY8DYCEvprRQHaIC%3Fpid%3DApi&f=1&ipt=e0aa5b4534a8e60ddbd80f4d4489483d4b27c960260962645e18831b1e6382eb"
+                    alt="main image" class="w-3/4 h-auto aspect-square object-cover rounded">
+            </div>
+            <!-- Two inline colored texts above main image -->
+            <div class="flex gap-2 mb-2">
+                <span id= "card-prefab-type1"class="text-red-500 text-sm font-semibold">Type 1</span>
+                <span id= "card-prefab-type2" class="text-blue-500 text-sm font-semibold">Type 2</span>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+    <script src="pokeApi.js"> </script>
 </body>
 
 </html>
