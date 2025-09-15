@@ -12,6 +12,7 @@ const genContainer = document.getElementById("gen-container");
 const genText = document.getElementById("gen-text");
 let currentRunId = 0;
 let currentAbortController = null;
+const delay = 0;
 const getGenerationLengths = async () => {
   const totalGens = await getTotalGenerations();
   const lengths = [];
@@ -76,11 +77,6 @@ const generationLengthById = async (id) => {
   }
 };
 
-// requesting a pokemon.
-
-const delay = 0;
-//num = 1025;
-
 const addPokemons = async (left, right) => {
   // start a new run: increment id and abort any previous run
   const runId = ++currentRunId;
@@ -139,13 +135,17 @@ const addPokemons = async (left, right) => {
       const pokemonType2 =
         data.types.length > 1 ? data.types[1].type.name : null;
       if (clonedType1) {
-        clonedType1.textContent = `${pokemonType1.charAt(0).toUpperCase()}${pokemonType1.slice(1)}`;
+        clonedType1.textContent = `${pokemonType1
+          .charAt(0)
+          .toUpperCase()}${pokemonType1.slice(1)}`;
         if (colorsType[pokemonType1]) {
           clonedType1.style.color = colorsType[pokemonType1];
         }
       }
       if (clonedType2) {
-        clonedType2.textContent = pokemonType2 ? `${pokemonType2.charAt(0).toUpperCase()}${pokemonType2.slice(1)}` : "";
+        clonedType2.textContent = pokemonType2
+          ? `${pokemonType2.charAt(0).toUpperCase()}${pokemonType2.slice(1)}`
+          : "";
         if (colorsType[pokemonType2]) {
           clonedType2.style.color = colorsType[pokemonType2];
         }
@@ -197,7 +197,4 @@ const colorsType = {
   fairy: "#D685AD",
 };
 
-//addPokemons();
-//generationById(1);
-// getGenerationsLength();
 initializeGenSelector();
