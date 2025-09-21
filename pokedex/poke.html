@@ -4,28 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vanilla JS Webpage</title>
+    <title>POKEDEX</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="h-screen">
-    <h1 class="text-center text-4xl">Pokedex</h1>
-    <div id="cards-container" class="grid md:grid-cols-7 gap-4 auto-rows-min   ">
+<body class="h-screen bg-blue-100">
+    <h1 class="text-center text-5xl font-bold text-blue-400">Pokedex</h1>
+    <div class = "my-5">
+        <nav id="gen-selector">
+            <ul id="gen-container" class="flex flex-wrap gap-2 justify-center">
+                <li id="gen-text" class= "bg-indigo-300 bg-opacity-45 rounded font-bold ">
+                    <a class="px-4 py-2 hover:bg-gray-200 rounded block"></a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+    <div id="cards-container" class="grid md:grid-cols-7  2xl: gap-4 md:gap-4 auto-rows-min justify-center ">
 
 
         <div id="card-prefab" class="bg-white rounded-lg shadow-md p-4 max-w-sm invisible">
             <!-- Top section with text and tiny image -->
             <div class="flex items-center justify-between mb-4">
                 <span id="pokemon-span" class="text-sm font-medium ">Card Title</span>
-                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngarts.com%2Ffiles%2F4%2FPokeball-PNG-Image-Background.png&f=1&nofb=1&ipt=47e481b585e806008d7f8c355bcb803dc9624864d3406006fd268a41222f5bcb"
+                <img src="Pokeball-PNG-Image-Background-159933909.png"
                     alt="tiny icon" class="w-1/12 h-auto aspect-square">
             </div>
 
-
-
             <!-- Center image -->
             <div class="flex justify-center">
-                <img id = "card-prefab-center-image" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.aRRIphtqKuoY8DYCEvprRQHaIC%3Fpid%3DApi&f=1&ipt=e0aa5b4534a8e60ddbd80f4d4489483d4b27c960260962645e18831b1e6382eb"
+                <img id = "card-prefab-center-image" src="Symbol.png"
                     alt="main image" class="w-3/4 h-auto aspect-square object-cover rounded">
             </div>
             <!-- Two inline colored texts above main image -->
