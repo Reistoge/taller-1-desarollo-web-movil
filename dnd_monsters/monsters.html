@@ -7,9 +7,8 @@
     <title>DND 5e MONSTERS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                screens: {
+        tailwind.config = { theme: {
+            screens: {
                 'tn': '384px',  //tiny: half of medium (custom)
                 'sm': '640px',
                 'md': '768px',
@@ -17,19 +16,54 @@
                 'xl': '1152px', //xl: three times tiny (modified)
                 '2xl': '1536px',
                 '3xl': '1920px',//3xl: five times tiny (custom)
-                }
+            },
+            extend: {
+                colors: {
+                    midnight: {
+                        50: '#c0c3c9',
+                        100: '#b7bcc7',
+                        200: '#a6aec3',
+                        300: '#909bbc',
+                        400: '#7782b5',
+                        500: '#626aac',
+                        600: '#4d50a0',
+                        700: '#40418c',
+                        800: '#363771',
+                        900: '#30325b',
+                        950: '#1c1c34',
+                    },
+                    ochre: '#814e16',
+                },
             }
-        }
+        }}
     </script>
 </head>
 
 <body class="h-screen bg-slate-950">
-    <h2 class="text-center text-2xl font-bold   text-red-800">Dungeons & Dragons</h2>
-    <h3 class="text-center text-xl              text-slate-700"><i>5th Edition</i></h3>
-    <h1 class="text-center text-4xl font-bold   text-indigo-700 py-2">Monster Statblocks</h1>
+    <div class="flex flex-row pt-4 mx-6 justify-between items-center">
+        <!-- Back to Menu Button: aligned left -->
+        <div class="text-left text-white min-w-32">
+            <button id="back-to-menu"
+                onclick="window.location.href='../index.html'"
+                class="flex items-center gap-2 min-h-10 px-4 rounded-full 
+                bg-indigo-900 hover:bg-midnight-700 shadow-md shadow-midnight-950/50">
+                <span class="text-xl font-bold text-amber-100 font-mono">◀</span>
+                <span class="text-xl font-bold text-amber-100 pb-[5px]">ᴍᴇɴᴜ</span>
+            </button>
+        </div>
+        <!-- Headers: centered to the parent, not just its own width -->
+        <div>
+            <h2 class="text-center text-2xl font-bold   text-red-800">Dungeons & Dragons</h2>
+            <h3 class="text-center text-lg              text-ochre"><i>5th Edition</i></h3>
+        </div>
+        <div class="min-w-32"></div>
+    </div>
+    <h1 class="text-center text-4xl font-bold   text-midnight-600 my-2">Monster Statblocks</h1>
+
+    <div class="mt-6 mx-6 border-4 border-midnight-950 rounded-full"></div> <!-- white line separator -->
 
     <div id="statblock-container" 
-        class="m-6 auto-rows-min justify-center grid gap-4 
+        class="m-6 auto-rows-min justify-center grid gap-4  
             grid-cols-1
             md:grid-cols-2
             xl:grid-cols-3 
@@ -44,7 +78,7 @@
                 <div>
                     <div class="flex mx-2 gap-2 justify-between">
                         <!-- Text section -->
-                        <h1 class="text-2xl font-bold text-amber-50 py-1">
+                        <h1 class="text-2xl font-bold text-amber-100 py-1">
                             Monster Name
                         </h1>
     
@@ -58,7 +92,7 @@
                         </div>
                     </div>
 
-                    <h3 class="text-left mx-2 text-amber-50 italic">Type, Size, Alignment</h3>
+                    <h3 class="text-left mx-2 text-amber-100 italic">Type, Size, Alignment</h3>
 
                 </div>
 
@@ -85,18 +119,18 @@
                     <!-- Sidebar: full width on small, 1/5 on lg+, allow shrinking with min-w-0 -->
                     <div class="w-full lg:py-2 lg:w-1/5 min-w-0 flex flex-row lg:flex-col gap-2">
                         <div class="flex-1">
-                            <h1 class="text-center text-amber-50 text-lg m-2 py-2 rounded-lg bg-slate-900">10</h1>
-                            <h1 class="text-center text-amber-50 text-xl font-bold">AC</h1>
+                            <h1 class="text-center text-amber-100 text-lg mx-2 py-2 rounded-lg bg-slate-900">10</h1>
+                            <h1 class="text-center text-amber-100 text-xl font-bold">AC</h1>
                         </div>
 
                         <div class="flex-1">
-                            <h1 class="text-center text-amber-50 text-lg m-2 py-2 rounded-lg bg-slate-900">320</h1>
-                            <h1 class="text-center text-amber-50 text-xl font-bold">HP</h1>
+                            <h1 class="text-center text-amber-100 text-lg mx-2 py-2 rounded-lg bg-slate-900">320</h1>
+                            <h1 class="text-center text-amber-100 text-xl font-bold">HP</h1>
                         </div>
 
                         <div class="flex-1">
-                            <h1 class="text-center text-amber-50 text-lg m-2 py-2  rounded-lg bg-slate-900">5</h1>
-                            <h1 class="text-center text-amber-50 text-xl font-bold">CR</h1>
+                            <h1 class="text-center text-amber-100 text-lg mx-2 py-2  rounded-lg bg-slate-900">5</h1>
+                            <h1 class="text-center text-amber-100 text-xl font-bold">CR</h1>
                         </div>
                     </div>
                 </div>
@@ -105,34 +139,34 @@
 
                 <div class="flex flex-row gap-2 px-2"> <!-- horizontal -->
                     <div class="flex flex-col flex-1">
-                        <h2 class="text-center text-amber-50 font-bold">STR</h2>
-                        <h1 class="text-center text-amber-50 text-lg">mod</h1>
-                        <h3 class="text-center text-amber-50">stat</h3>
+                        <h2 class="text-center text-amber-100 font-bold">STR</h2>
+                        <h1 class="text-center text-amber-100 text-lg">mod</h1>
+                        <h3 class="text-center text-amber-100">stat</h3>
                     </div>
                     <div class="flex flex-col flex-1">
-                        <h2 class="text-center text-amber-50 font-bold">DEX</h2>
-                        <h1 class="text-center text-amber-50 text-lg">mod</h1>
-                        <h3 class="text-center text-amber-50">stat</h3>
+                        <h2 class="text-center text-amber-100 font-bold">DEX</h2>
+                        <h1 class="text-center text-amber-100 text-lg">mod</h1>
+                        <h3 class="text-center text-amber-100">stat</h3>
                     </div>
                     <div class="flex flex-col flex-1">
-                        <h2 class="text-center text-amber-50 font-bold">CON</h2>
-                        <h1 class="text-center text-amber-50 text-lg">mod</h1>
-                        <h3 class="text-center text-amber-50">stat</h3>
+                        <h2 class="text-center text-amber-100 font-bold">CON</h2>
+                        <h1 class="text-center text-amber-100 text-lg">mod</h1>
+                        <h3 class="text-center text-amber-100">stat</h3>
                     </div>
                     <div class="flex flex-col flex-1">
-                        <h2 class="text-center text-amber-50 font-bold">INT</h2>
-                        <h1 class="text-center text-amber-50 text-lg">mod</h1>
-                        <h3 class="text-center text-amber-50">stat</h3>
+                        <h2 class="text-center text-amber-100 font-bold">INT</h2>
+                        <h1 class="text-center text-amber-100 text-lg">mod</h1>
+                        <h3 class="text-center text-amber-100">stat</h3>
                     </div>
                     <div class="flex flex-col flex-1">
-                        <h2 class="text-center text-amber-50 font-bold">WIS</h2>
-                        <h1 class="text-center text-amber-50 text-lg">mod</h1>
-                        <h3 class="text-center text-amber-50">stat</h3>
+                        <h2 class="text-center text-amber-100 font-bold">WIS</h2>
+                        <h1 class="text-center text-amber-100 text-lg">mod</h1>
+                        <h3 class="text-center text-amber-100">stat</h3>
                     </div>
                     <div class="flex flex-col flex-1">
-                        <h2 class="text-center text-amber-50 font-bold">CHA</h2>
-                        <h1 class="text-center text-amber-50 text-lg">mod</h1>
-                        <h3 class="text-center text-amber-50">stat</h3>
+                        <h2 class="text-center text-amber-100 font-bold">CHA</h2>
+                        <h1 class="text-center text-amber-100 text-lg">mod</h1>
+                        <h3 class="text-center text-amber-100">stat</h3>
                     </div>
                 </div>
 
@@ -144,6 +178,13 @@
 
     <!-- Sentinel for lazy rendering -->
     <div id="scroll-sentinel" class="flex h-16"></div>
+
+    <button id="back-to-top" class="fixed bottom-8 right-10 pt-1 pb-2 min-w-10 rounded-full 
+    text-center text-xl font-bold text-amber-100 bg-indigo-900 hover:bg-midnight-700  
+    shadow-md shadow-midnight-950/50
+    pointer-events-none transition-opacity opacity-0 duration-300 ease-in-out">
+        ▲
+    </button>
 
     <script src="dnd5eAPI.js"> </script>
 </body>

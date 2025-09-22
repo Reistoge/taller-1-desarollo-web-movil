@@ -1,13 +1,14 @@
 const container = document.getElementById("statblock-container");
 const prefab = document.getElementById("statblock-prefab");
 const sentinel = document.getElementById("scroll-sentinel");
+const backToTop = document.getElementById("back-to-top");
 
 const baseUrl = "https://www.dnd5eapi.co";
 const fallbackImg = "img/fallback_img.png";
 const loadingImg = "img/loading_img.png";
 
 let monsterIndex = 0;   // start with first monster
-const batchSize = 10;   // load 10 monsters at a time
+const batchSize = 12;   // load 10 monsters at a time
 let monstersList = [];  // list of monsters (name + url)
 let monstersDetails = []; // fetched detailed monsters
 
@@ -136,6 +137,19 @@ const sentinelObserver = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting) appendNextBatch();
 }, { rootMargin: "200px" });
 
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 320) { // show after scrolling 320px
+    backToTop.classList.remove("opacity-0", "pointer-events-none");
+    backToTop.classList.add("opacity-100", "pointer-events-auto");
+  } else {
+    backToTop.classList.add("opacity-0", "pointer-events-none");
+    backToTop.classList.remove("opacity-100", "pointer-events-auto");
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
 // Initialize
 (async function init() {

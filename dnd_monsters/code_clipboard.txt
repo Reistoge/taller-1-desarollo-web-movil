@@ -2,6 +2,67 @@
 <SECTION text= "">
 <\SECTION>
 
+            colors: {
+                transparent: 'transparent',
+                current: 'currentColor',
+                black: colors.black,
+                white: colors.white,
+                red: colors.red,
+                amber: colors.amber,
+                slate: colors.slate,
+            },
+
+    <button id="back-to-top" class="hidden fixed bottom-8 right-10 pt-[6px] pb-[10px] px-2 rounded-full 
+    bg-slate-700 hover:bg-midnight-800 shadow-md transition-opacity">
+        <h1 class="min-w-7 text-center text-xl font-bold text-amber-50">▲</h1>
+    </button>
+
+        <button id="back-to-top" class="fixed bottom-8 right-10 pt-[6px] pb-[10px] min-w-11 rounded-full 
+    text-center text-xl font-bold text-amber-100 bg-indigo-900 hover:bg-midnight-700 shadow-md 
+    border-4 border-double border-amber-100
+    pointer-events-none transition-opacity opacity-0 duration-300 ease-in-out">
+        ▲
+    </button>
+
+
+        <div class="flex flex-row pt-4 mx-6 justify-between items-center">
+        <!-- Back to Menu Button: aligned left -->
+        <div class="text-left text-white min-w-32">
+            <button id="back-to-menu"
+                onclick="window.location.href='../index.html'"
+                class="flex items-center gap-2 min-h-11 px-4 rounded-full 
+                bg-indigo-900 hover:bg-midnight-700 shadow-md">
+                <span class="text-xl font-bold text-amber-100 font-mono">◀</span>
+                <span class="text-xl font-bold text-amber-100 pb-1">ᴍᴇɴᴜ</span>
+            </button>
+        </div>
+        <!-- Headers: centered to the parent, not just its own width -->
+        <div>
+            <h2 class="text-center text-2xl font-bold   text-red-800">Dungeons & Dragons</h2>
+            <h3 class="text-center text-lg              text-ochre"><i>5th Edition</i></h3>
+        </div>
+        <div class="min-w-32"></div>
+    </div>
+    <h1 class="text-center text-4xl font-bold   text-midnight-600 my-2">Monster Statblocks</h1>
+
+
+----------------------------------------------------------------------------------------
+            <button id="back-to-menu"
+                onclick="window.location.href='../index.html'"
+                class="flex items-center gap-2 min-h-12 px-4 rounded-full 
+                bg-indigo-900 hover:bg-midnight-700
+                border-4 border-slate-500 shadow-md shadow-midnight-800">
+                <span class="text-xl font-bold text-amber-100 font-mono">◀</span>
+                <span class="text-xl font-bold text-amber-100 pb-[5px]">ᴍᴇɴᴜ</span>
+            </button>
+
+    <button id="back-to-top" class="fixed bottom-8 right-10 pt-1 pb-2 min-w-12 rounded-full 
+    text-center text-xl font-bold text-amber-100 bg-indigo-900 hover:bg-midnight-700  
+    border-4 border-slate-500 shadow-md shadow-midnight-800
+    pointer-events-none transition-opacity opacity-0 duration-300 ease-in-out">
+        ▲
+    </button>
+
 # --- HTML Snippets ---
 <SECTION text= "HTML no prefab (empty)">
 
