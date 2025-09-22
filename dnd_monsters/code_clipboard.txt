@@ -215,6 +215,24 @@
   });
 <\SECTION>
 
+# --- BATCH FUNC ---
+// Step 2: Fetch the next batch of details
+async function appendNextBatch() {
+    const nextBatch = monstersList.slice(currentIndex, currentIndex + batchSize);
+
+    const batchDetails = await Promise.all(
+        nextBatch.map(async m => {
+            const detailRes = await fetch("https://www.dnd5eapi.co" + m.url);
+            return await detailRes.json();
+        })
+    );
+
+    monsters.push(...batchDetails);
+    currentIndex += batchSize;
+
+    return batchDetails; // optional, in case you want to render immediately
+}
+
 # --- EXAMPLE STATBLOCK STYLING ---
 <SECTION text= "--- HTML ---">
 

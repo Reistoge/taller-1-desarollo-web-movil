@@ -6,10 +6,9 @@ const baseUrl = "https://www.dnd5eapi.co";
 const fallbackImg = "img/fallback_img.png";
 const loadingImg = "img/loading_img.png";
 
-let monsterIndex = 0;   // start with first monster
-const batchSize = 10;   // load 10 monsters at a time
-let monstersList = [];  // list of monsters (name + url)
-let monstersDetails = []; // fetched detailed monsters
+let monsterIndex = 0; // start with first monster
+const batchSize = 10; // load 10 monsters at a time
+let monsters = [];    // store the list or detailed data
 
 // Utility: calculate D&D stat modifier
 function getModifier(stat) {
@@ -21,7 +20,7 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// Lazy loading of Images with IntersectionObserver
+// Lazy loading with IntersectionObserver
 const imgObserver = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -33,32 +32,23 @@ const imgObserver = new IntersectionObserver((entries, obs) => {
   });
 }, { rootMargin: "100px" });
 
-// 1. Fetch only the monster list
+// Fetch all monsters list + details
 async function fetchMonsters() {
-    const res = await fetch(baseUrl + "/api/monsters/");
-    const data = await res.json();
-    monstersList = data.results;
-    monsterIndex = 0;
+    const listRes = await fetch("https://www.dnd5eapi.co/api/monsters/");
+    const listData = await listRes.json();
+
+    // Fetch details in parallel
+    monsters = await Promise.all(listData.results.map(async m => {
+        const detailRes = await fetch("https://www.dnd5eapi.co" + m.url);
+        return await detailRes.json();
+    }));
 }
 
-// 2. Fetch the next batch of detailed monsters and render
-async function appendNextBatch() {
-  if (monsterIndex >= monstersList.length) return;
-
-  const nextBatch = monstersList.slice(monsterIndex, monsterIndex + batchSize);
-
-  // Fetch details for the batch
-  const batchDetails = await Promise.all(
-    nextBatch.map(async m => {
-      const res = await fetch(baseUrl + m.url);
-      return await res.json();
-    })
-  );
-
-  monstersDetails.push(...batchDetails);
-
-  // Render each monster
-  batchDetails.forEach(data => {
+// Append next batch of statblocks
+function appendNextBatch() {
+  const batch = monsters.slice(monsterIndex, monsterIndex + batchSize);
+  
+  batch.forEach(data => {
     const clone = prefab.cloneNode(true);
     clone.id = "";
     clone.classList.remove("hidden");
@@ -111,11 +101,12 @@ async function appendNextBatch() {
     const imgEl = clone.querySelector("img.lazy-img");
     if (imgEl) {
         imgEl.src = loadingImg; // show loading image first
-        
+
         // get image from API, if not avalaible use fallback
         imgEl.dataset.src = data.image ? baseUrl + data.image : fallbackImg;
 
-        imgEl.onerror = () => { // If anything fails show to fallback (e.g. loading img fails)
+        // If anything fails show to fallback (e.g. loading img fails)
+        imgEl.onerror = () => {
           imgEl.src = fallbackImg;
         }
 
@@ -126,7 +117,8 @@ async function appendNextBatch() {
   });
 
   monsterIndex += batchSize;
-  if (monsterIndex >= monstersList.length) {  // All monsters loaded -> stop observing sentinel
+
+  if (monsterIndex >= monsters.length) { // All monsters loaded -> stop observing sentinel
     sentinelObserver.unobserve(sentinel);
   }
 }
@@ -139,9 +131,9 @@ const sentinelObserver = new IntersectionObserver(entries => {
 
 // Initialize
 (async function init() {
-  await fetchMonsters();     // fetch only list first
-  await appendNextBatch();   // load first batch
-  sentinelObserver.observe(sentinel);
+    await fetchMonsters();      // fetch all monsters + details
+    appendNextBatch();           // show first batch
+    sentinelObserver.observe(sentinel);  // observe scroll sentinel
 })();
 
 // (async function init() {
