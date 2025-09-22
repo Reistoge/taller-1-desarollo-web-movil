@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DND 5e MONSTERS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-screen bg-blue-100">
+    <h2 class="text-center text-2xl font-bold text-blue-600">Dungeons & Dragons</h2>
+    <h3 class="text-center text-xl text-blue-300"><i>5th Edition</i></h3>
+    <h1 class="text-center text-4xl font-bold text-blue-800">Monsters</h1>
+
+    <div id="statblock-container" class="grid md:grid-cols-7  2xl: gap-4 md:gap-4 auto-rows-min justify-center ">
+
+
+        <div id="card-prefab">
+
+            <!-- Implement prefab here -->
+
+        </div>
+
+    </div>
+    <script src="dnd5eAPI.js"> </script>
+</body>
+
+</html>
+
+  <!-- Prefab -->
+  <div id="statblock-prefab" class="stat-block" style="display:none">
+    <hr class="orange-border" />
+    <div class="section-left">
+      <div class="creature-heading">
+        <h1>Monster Name</h1>
+        <h2>Size Type, Alignment</h2>
+      </div>
+      <svg height="5" width="100%" class="tapered-rule">
+        <polyline points="0,0 400,2.5 0,5"></polyline>
+      </svg>
+
+      <div class="top-stats">
+        <div class="property-line first">
+          <h4>Armor Class</h4>
+          <p>—</p>
+        </div>
+        <div class="property-line">
+          <h4>Hit Points</h4>
+          <p>—</p>
+        </div>
+        <div class="property-line last">
+          <h4>Speed</h4>
+          <p>—</p>
+        </div>
+
+        <svg height="5" width="100%" class="tapered-rule">
+          <polyline points="0,0 400,2.5 0,5"></polyline>
+        </svg>
+
+        <div class="abilities">
+          <div class="ability-strength"><h4>STR</h4><p>—</p></div>
+          <div class="ability-dexterity"><h4>DEX</h4><p>—</p></div>
+          <div class="ability-constitution"><h4>CON</h4><p>—</p></div>
+          <div class="ability-intelligence"><h4>INT</h4><p>—</p></div>
+          <div class="ability-wisdom"><h4>WIS</h4><p>—</p></div>
+          <div class="ability-charisma"><h4>CHA</h4><p>—</p></div>
+        </div>
+
+        <svg height="5" width="100%" class="tapered-rule">
+          <polyline points="0,0 400,2.5 0,5"></polyline>
+        </svg>
+
+        <div class="property-line first">
+          <h4>Damage Immunities</h4>
+          <p>—</p>
+        </div>
+        <div class="property-line">
+          <h4>Condition Immunities</h4>
+          <p>—</p>
+        </div>
+        <div class="property-line">
+          <h4>Senses</h4>
+          <p>—</p>
+        </div>
+        <div class="property-line">
+          <h4>Languages</h4>
+          <p>—</p>
+        </div>
+        <div class="property-line last">
+          <h4>Challenge</h4>
+          <p>—</p>
+        </div>
+      </div>
+    </div>
+    <hr class="orange-border bottom" />
+  </div>
+
+
+                  <div class="flex flex-row gap-4"> <!-- horizontal -->
+                    <img src="Pokeball-PNG-Image-Background-159933909.png"
+                        alt="monster img" 
+                        class="basis-3/4 h-auto aspect-square object-contain">
+
+                    <div class="flex flex-col gap-2 basis-1/4"> <!-- vertical -->
+                        <div class="flex flex-col flex-1 p-2 bg-pink-200">B1</div>
+                        <div class="flex flex-col flex-1 p-2 bg-pink-200">B2</div>
+                        <div class="flex flex-col flex-1 p-2 bg-pink-200">B3</div>
+                    </div>
+                </div>
+
+
+                
+                <!-- Middle section with image and AC, Speed, CR -->
+                <!-- Responsive: stacks on small screens, side-by-side on lg+ -->
+                <div class="flex flex-col lg:flex-row w-full gap-4 items-stretch">
+                    <!-- Image wrapper: full width on small, 3/4 on lg+ -->
+                    <div class="w-full lg:w-3/4 flex-shrink-0">
+                        <!-- image: fill wrapper width, keep aspect ratio, cap height -->
+                        <img
+                        src="Pokeball-PNG-Image-Background-159933909.png"
+                        alt="monster img"
+                        class="p-2 w-full h-auto object-contain rounded-lg" 
+                        /> <!-- max-h-[420px] -->
+                    </div>
+
+                    <!-- Sidebar: full width on small, 1/4 on lg+, allow shrinking with min-w-0 -->
+                    <div class="w-full lg:py-2 lg:w-1/4 min-w-0 flex flex-row lg:flex-col gap-2">
+                        <div class="flex-1 p-2 bg-pink-200">B1</div>
+                        <div class="flex-1 p-2 bg-pink-200">B2</div>
+                        <div class="flex-1 p-2 bg-pink-200">B3</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-row gap-2 px-2"> <!-- horizontal -->
+                    <div class="flex flex-col flex-1 bg-purple-200">
+                        <h2 class="text-center text-amber-50 text-l font-bold bg-green-300">STR</h2>
+                        <h1 class="text-center text-amber-50 text-l bg-green-300">mod</h1>
+                        <h3 class="text-center text-amber-50 bg-green-300">stat</h3>
+                    </div>
+                    <div class="flex flex-col flex-1 bg-purple-200">
+                        <h2 class="text-center text-amber-50 text-l font-bold bg-green-300">DEX</h2>
+                        <h1 class="text-center text-amber-50 text-l bg-green-300">mod</h1>
+                        <h3 class="text-center text-amber-50 bg-green-300">stat</h3>
+                    </div>
+                    <div class="flex flex-col flex-1 bg-purple-200">
+                        <h2 class="text-center text-amber-50 text-l font-bold bg-green-300">CON</h2>
+                        <h1 class="text-center text-amber-50 text-l bg-green-300">mod</h1>
+                        <h3 class="text-center text-amber-50 bg-green-300">stat</h3>
+                    </div>
+                    <div class="flex flex-col flex-1 bg-purple-200">
+                        <h2 class="text-center text-amber-50 text-l font-bold bg-green-300">INT</h2>
+                        <h1 class="text-center text-amber-50 text-l bg-green-300">mod</h1>
+                        <h3 class="text-center text-amber-50 bg-green-300">stat</h3>
+                    </div>
+                    <div class="flex flex-col flex-1 bg-purple-200">
+                        <h2 class="text-center text-amber-50 text-l font-bold bg-green-300">WIS</h2>
+                        <h1 class="text-center text-amber-50 text-l bg-green-300">mod</h1>
+                        <h3 class="text-center text-amber-50 bg-green-300">stat</h3>
+                    </div>
+                    <div class="flex flex-col flex-1 bg-purple-200">
+                        <h2 class="text-center text-amber-50 text-l font-bold bg-green-300">CHA</h2>
+                        <h1 class="text-center text-amber-50 text-l bg-green-300">mod</h1>
+                        <h3 class="text-center text-amber-50 bg-green-300">stat</h3>
+                    </div>
+                </div>
