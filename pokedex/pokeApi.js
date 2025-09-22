@@ -13,6 +13,7 @@ const genText = document.getElementById("gen-text");
 let currentRunId = 0;
 let currentAbortController = null;
 const delay = 0;
+var loadedCards = [];
 const getGenerationLengths = async () => {
   const totalGens = await getTotalGenerations();
   const lengths = [];
@@ -79,6 +80,7 @@ const generationLengthById = async (id) => {
 
 const addPokemons = async (left, right) => {
   // start a new run: increment id and abort any previous run
+
   const runId = ++currentRunId;
   if (currentAbortController) {
     try {
@@ -94,74 +96,101 @@ const addPokemons = async (left, right) => {
       cardsCointainer.removeChild(child);
     }
   });
-
+  loadedCards = [];
   for (let i = left; i <= right; i++) {
-    // if a newer run started, stop appending further results for this run
-    if (runId !== currentRunId) return;
-
-    const request = "https://pokeapi.co/api/v2/pokemon/" + i + "/";
-
-    try {
-      const response = await fetch(request, { signal });
-      // if aborted, fetch will throw; handle below
-      if (!response.ok) continue;
-      const data = await response.json(); // get data async
-
-      // if a newer run started while awaiting, skip this result
+    const clonedCard = cardPrefab.cloneNode(true);
+    clonedCard.id = "";
+    clonedCard.style.visibility = "hidden";
+    cardsCointainer.appendChild(clonedCard);
+    loadedCards.push(clonedCard);
+  }
+  const loadProccess = async () => {
+    for (let i = left; i <= right; i++) {
+      // if a newer run started, stop appending further results for this run
       if (runId !== currentRunId) return;
 
-      // Clone the card first
-      const clonedCard = cardPrefab.cloneNode(true);
-      clonedCard.id = "";
+      const request = "https://pokeapi.co/api/v2/pokemon/" + i + "/";
 
-      // Decorate the cloned card
-      const clonedImage = clonedCard.querySelector("#card-prefab-center-image");
-      const clonedType1 = clonedCard.querySelector("#card-prefab-type1");
-      const clonedType2 = clonedCard.querySelector("#card-prefab-type2");
-      const clonedName = clonedCard.querySelector("#pokemon-span");
+      try {
+        const response = await fetch(request, { signal });
+        // if aborted, fetch will throw; handle below
+        if (!response.ok) continue;
+        const data = await response.json(); // get data async
 
-      // requesting the pokemon image
-      const imageURL = data.sprites?.front_default || "";
-      if (clonedImage) clonedImage.src = imageURL;
+        // if a newer run started while awaiting, skip this result
+        if (runId !== currentRunId) return;
 
-      // request pokemon name
-      const pokemonName = `#${i} ${data.name
-        .charAt(0)
-        .toUpperCase()}${data.name.slice(1)}`;
-      if (clonedName) clonedName.textContent = pokemonName;
+        // Use the pre-created card from loadedCards
+        const cardIndex = i - left;
+        const clonedCard = loadedCards[cardIndex];
+        if (!clonedCard) continue;
 
-      // request pokemon type
-      const pokemonType1 = data.types[0].type.name;
-      const pokemonType2 =
-        data.types.length > 1 ? data.types[1].type.name : null;
-      if (clonedType1) {
-        clonedType1.textContent = `${pokemonType1
+        // Decorate the cloned card
+        const clonedImage = clonedCard.querySelector(
+          "#card-prefab-center-image"
+        );
+        const clonedType1 = clonedCard.querySelector("#card-prefab-type1");
+        const clonedType2 = clonedCard.querySelector("#card-prefab-type2");
+        const clonedName = clonedCard.querySelector("#pokemon-span");
+
+        // requesting the pokemon image
+        const imageURL = data.sprites?.front_default || "";
+        if (clonedImage) clonedImage.src = imageURL;
+
+        // request pokemon name
+        const pokemonName = `#${i} ${data.name
           .charAt(0)
-          .toUpperCase()}${pokemonType1.slice(1)}`;
-        if (colorsType[pokemonType1]) {
-          clonedType1.style.color = colorsType[pokemonType1];
-        }
-      }
-      if (clonedType2) {
-        clonedType2.textContent = pokemonType2
-          ? `${pokemonType2.charAt(0).toUpperCase()}${pokemonType2.slice(1)}`
-          : "";
-        if (colorsType[pokemonType2]) {
-          clonedType2.style.color = colorsType[pokemonType2];
-        }
-      }
-      cardsCointainer.appendChild(clonedCard);
-      clonedCard.style.visibility = "visible";
-    } catch (err) {
-      if (err.name === "AbortError") {
-        // run was aborted — stop processing
-        return;
-      }
-      console.error("Fetch error for", i, err);
-    }
+          .toUpperCase()}${data.name.slice(1)}`;
+        if (clonedName) clonedName.textContent = pokemonName;
 
-    await new Promise((resolve) => setTimeout(resolve, delay));
-  }
+        // request pokemon type
+        const pokemonType1 = data.types[0].type.name;
+        const pokemonType2 =
+          data.types.length > 1 ? data.types[1].type.name : null;
+        if (clonedType1) {
+          clonedType1.textContent = `${pokemonType1
+            .charAt(0)
+            .toUpperCase()}${pokemonType1.slice(1)}`;
+          if (colorsType[pokemonType1]) {
+            clonedType1.style.color = colorsType[pokemonType1];
+          }
+        }
+        if (clonedType2) {
+          clonedType2.textContent = pokemonType2
+            ? `${pokemonType2.charAt(0).toUpperCase()}${pokemonType2.slice(1)}`
+            : "";
+          if (colorsType[pokemonType2]) {
+            clonedType2.style.color = colorsType[pokemonType2];
+          }
+        }
+        clonedCard.style.visibility = "hidden";
+      } catch (err) {
+        if (err.name === "AbortError") {
+          // run was aborted — stop processing
+          return;
+        }
+        console.error("Fetch error for", i, err);
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      if (loadedCards.length && (i - left + 1) % 25 === 0) {
+        for (let j = i - left - 24; j <= i - left; j++) {
+          const card = loadedCards[j];
+          if (card && card.style.visibility !== "visible") {
+            card.style.visibility = "visible";
+          }
+        }
+      }
+    }
+    // Show any remaining cards if less than 25 at the end
+    for (let j = 0; j < loadedCards.length; j++) {
+      if (loadedCards[j] && loadedCards[j].style.visibility !== "visible") {
+        loadedCards[j].style.visibility = "visible";
+      }
+    }
+  };
+
+  await loadProccess();
 };
 const RomanNumerals = {
   1: "I",
