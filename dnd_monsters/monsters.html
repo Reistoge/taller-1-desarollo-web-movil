@@ -35,9 +35,8 @@
             xl:grid-cols-3 
             2xl:grid-cols-4 
             3xl:grid-cols-5">
-        </div>
 
-        <div id="statblock-prefab" class="bg-slate-800 rounded shadow-md p-4 max-w-md invisible">
+        <div id="statblock-prefab" class="bg-slate-800 rounded shadow-md p-4 max-w-md hidden">
             
             <div class="flex flex-col gap-2"> <!-- vertical -->
 
@@ -53,7 +52,7 @@
                         <div class="w-10 h-10 flex-shrink-0 align-top">
                             <img 
                                 src="fallback_img.png" 
-                                alt="type icon" 
+                                alt="type_icon" 
                                 class="w-full h-full object-cover"
                             />
                         </div>
@@ -69,11 +68,18 @@
                     <!-- Image wrapper: full width on small, 4/5 on lg+ -->
                     <div class="w-full lg:w-4/5 flex-shrink-0">
                         <!-- image: fill wrapper width, keep aspect ratio, cap height -->
-                        <img
+                        <!-- <img
                         src="fallback_img.png"
-                        alt="monster img"
                         class="p-2 w-full h-auto aspect-square object-cover rounded-lg" 
-                        /> <!-- max-h-[420px] -->
+                        alt="monster img"
+                        /> -->
+                        <img
+                        data-src="loading_img.png"
+                        class="lazy-img 
+                        opacity-25 transition-opacity duration-500 ease-in-out 
+                        p-2 w-full h-auto aspect-square object-cover rounded-lg" 
+                        alt="monster_img"
+                        />
                     </div>
 
                     <!-- Sidebar: full width on small, 1/5 on lg+, allow shrinking with min-w-0 -->
@@ -95,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="border mx-2 border-amber-50"></div>
+                <div class="border mx-2 border-amber-50"></div> <!-- white line separator -->
 
                 <div class="flex flex-row gap-2 px-2"> <!-- horizontal -->
                     <div class="flex flex-col flex-1">
@@ -130,10 +136,14 @@
                     </div>
                 </div>
 
-                <div class="border mx-2 border-amber-50"></div>
+                <div class="border mx-2 border-amber-50"></div> <!-- white line separator -->
             </div>
 
         </div>
+    </div>
+
+    <!-- Sentinel for lazy rendering -->
+    <div id="scroll-sentinel" class="h-10"></div>
 
     <script src="dnd5eAPI.js"> </script>
 </body>
