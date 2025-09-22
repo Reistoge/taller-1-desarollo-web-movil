@@ -1,115 +1,101 @@
-const container = document.getElementById("monster-container");
+const container = document.getElementById("statblock-container");
 const prefab = document.getElementById("statblock-prefab");
 
-let allMonsters = [];
-let currentIndex = 0;
-const pageSize = 10; // how many monsters to load per batch
+async function loadMonsters() {
+  try {
+    // 1. Get all monsters
+    const listResponse = await fetch("https://www.dnd5eapi.co/api/monsters/");
+    const listData = await listResponse.json();
 
-function mod(score) {
-  const m = Math.floor((score - 10) / 2);
-  return m >= 0 ? `+${m}` : `${m}`;
-}
+    // 2. Loop through each monster
+    for (const monster of listData.results) {
+      const detailResponse = await fetch("https://www.dnd5eapi.co" + monster.url);
+      const data = await detailResponse.json();
 
-async function loadMonsterList() {
-  const res = await fetch("https://www.dnd5eapi.co/api/monsters");
-  const data = await res.json();
-  allMonsters = data.results.sort((a, b) => a.name.localeCompare(b.name));
+      // 3. Clone prefab
+      const clone = prefab.cloneNode(true);
+      clone.id = ""; // remove duplicate id
+      clone.style.visibility = "visible";
 
-  // load first batch
-  loadNextBatch();
-}
+      // --- Fill prefab fields ---
 
-async function loadNextBatch() {
-  const end = Math.min(currentIndex + pageSize, allMonsters.length);
+      // Name
+      const nameEl = clone.querySelector("h1.text-2xl");
+      if (nameEl) nameEl.textContent = data.name;
 
-  for (let i = currentIndex; i < end; i++) {
-    await addMonster(allMonsters[i].index);
+      // Type, size, alignment
+      const typeEl = clone.querySelector("h3.italic");
+      if (typeEl) typeEl.textContent = `${capitalize(data.type)}, ${data.size}, ${data.alignment}`;
+
+      // Big image (use API image if available, else fallback)
+      const baseUrl = "https://www.dnd5eapi.co";
+const fallbackImg = "fallback_img.png";
+
+const imgEl = clone.querySelector("img.p-2");
+if (imgEl) {
+  if (data.image) {
+    imgEl.src = baseUrl + data.image;
+  } else {
+    imgEl.src = fallbackImg;
   }
 
-  currentIndex = end;
-
-  // reattach observer to the new sentinel if there are more
-  if (currentIndex < allMonsters.length) {
-    observeSentinel();
-  }
+  // Extra safety: if loading fails (404), switch to fallback
+  imgEl.onerror = () => {
+    imgEl.src = fallbackImg;
+  };
 }
 
-async function addMonster(index) {
-  const res = await fetch(`https://www.dnd5eapi.co/api/monsters/${index}`);
-  if (!res.ok) return;
-  const m = await res.json();
+      // AC
+      const acEl = clone.querySelector("div:nth-child(2) > div > h1.text-lg");
+      if (acEl) acEl.textContent = Array.isArray(data.armor_class) ? data.armor_class[0].value : data.armor_class;
 
-  const card = prefab.cloneNode(true);
-  card.id = "";
-  card.style.display = "block";
+      // HP
+      const hpEl = clone.querySelector("div:nth-child(2) > div:nth-child(2) > h1.text-lg");
+      if (hpEl) hpEl.textContent = data.hit_points;
 
-  // heading
-  card.querySelector("h1").textContent = m.name;
-  card.querySelector("h2").textContent = `${m.size} ${m.type}, ${m.alignment}`;
+      // CR
+      const crEl = clone.querySelector("div:nth-child(2) > div:nth-child(3) > h1.text-lg");
+      if (crEl) {
+        let cr = data.challenge_rating;
 
-  // armor class
-  const ac =
-    Array.isArray(m.armor_class) && m.armor_class.length > 0
-      ? m.armor_class.map((x) => x.value).join(", ")
-      : m.armor_class;
-  card.querySelector(".property-line:nth-of-type(1) p").textContent = ac;
+        // Map decimals to fractions
+        const crMap = {
+          0.5: "1/2",
+          0.25: "1/4",
+          0.125: "1/8"
+        };
 
-  // hit points
-  card.querySelector(".property-line:nth-of-type(2) p").textContent =
-    `${m.hit_points} (${m.hit_points_roll || ""})`;
+        crEl.textContent = crMap[cr] || cr; // fallback to raw number if not mapped
+      }
 
-  // speed
-  card.querySelector(".property-line:nth-of-type(3) p").textContent =
-    m.speed.walk || "—";
+      // Stats (STR, DEX, CON, INT, WIS, CHA)
+      const stats = [data.strength, data.dexterity, data.constitution, data.intelligence, data.wisdom, data.charisma];
+      const statBlocks = clone.querySelectorAll(".flex.flex-col.flex-1");
+      statBlocks.forEach((block, i) => {
+        const mod = getModifier(stats[i]);
+        const modEl = block.querySelector("h1.text-lg");
+        const statEl = block.querySelector("h3");
+        if (modEl) modEl.textContent = (mod >= 0 ? "+" : "") + mod;
+        if (statEl) statEl.textContent = stats[i];
+      });
 
-  // abilities
-  const abilities = card.querySelectorAll(".abilities > div p");
-  abilities[0].textContent = `${m.strength} (${mod(m.strength)})`;
-  abilities[1].textContent = `${m.dexterity} (${mod(m.dexterity)})`;
-  abilities[2].textContent = `${m.constitution} (${mod(m.constitution)})`;
-  abilities[3].textContent = `${m.intelligence} (${mod(m.intelligence)})`;
-  abilities[4].textContent = `${m.wisdom} (${mod(m.wisdom)})`;
-  abilities[5].textContent = `${m.charisma} (${mod(m.charisma)})`;
-
-  // damage immunities
-  card.querySelector(".property-line:nth-of-type(4) p").textContent =
-    m.damage_immunities.join(", ") || "—";
-
-  // condition immunities
-  card.querySelector(".property-line:nth-of-type(5) p").textContent =
-    m.condition_immunities.map((ci) => ci.name).join(", ") || "—";
-
-  // senses
-  card.querySelector(".property-line:nth-of-type(6) p").textContent =
-    Object.entries(m.senses)
-      .map(([k, v]) => `${k} ${v}`)
-      .join(", ") || "—";
-
-  // languages
-  card.querySelector(".property-line:nth-of-type(7) p").textContent =
-    m.languages || "—";
-
-  // challenge rating
-  card.querySelector(".property-line:nth-of-type(8) p").textContent =
-    `${m.challenge_rating} (${m.xp} XP)`;
-
-  container.appendChild(card);
-}
-
-// 🔎 Infinite Scroll using IntersectionObserver
-function observeSentinel() {
-  let sentinel = document.createElement("div");
-  sentinel.className = "sentinel";
-  container.appendChild(sentinel);
-
-  const observer = new IntersectionObserver((entries, obs) => {
-    if (entries[0].isIntersecting) {
-      obs.disconnect(); // stop observing until batch loaded
-      sentinel.remove();
-      loadNextBatch();
+      // Append clone
+      container.appendChild(clone);
     }
-  });
-  observer.observe(sentinel);
+  } catch (err) {
+    console.error("Error loading monsters:", err);
+  }
 }
 
-loadMonsterList();
+// Utility: calculate D&D modifier
+function getModifier(stat) {
+  return Math.floor((stat - 10) / 2);
+}
+
+// Utility: capitalize first letter
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// Run
+loadMonsters();

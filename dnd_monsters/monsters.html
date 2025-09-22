@@ -35,6 +35,7 @@
             xl:grid-cols-3 
             2xl:grid-cols-4 
             3xl:grid-cols-5">
+        </div>
 
         <div id="statblock-prefab" class="bg-slate-800 rounded shadow-md p-4 max-w-md invisible">
             
@@ -51,7 +52,7 @@
                         <!-- Fixed-size image, aligned to first text line -->
                         <div class="w-10 h-10 flex-shrink-0 align-top">
                             <img 
-                                src="Pokeball-PNG-Image-Background-159933909.png" 
+                                src="fallback_img.png" 
                                 alt="type icon" 
                                 class="w-full h-full object-cover"
                             />
@@ -69,9 +70,9 @@
                     <div class="w-full lg:w-4/5 flex-shrink-0">
                         <!-- image: fill wrapper width, keep aspect ratio, cap height -->
                         <img
-                        src="Pokeball-PNG-Image-Background-159933909.png"
+                        src="fallback_img.png"
                         alt="monster img"
-                        class="p-2 w-full h-auto object-contain rounded-lg" 
+                        class="p-2 w-full h-auto aspect-square object-cover rounded-lg" 
                         /> <!-- max-h-[420px] -->
                     </div>
 
@@ -130,14 +131,9 @@
                 </div>
 
                 <div class="border mx-2 border-amber-50"></div>
-
-                <div class="flex flex-col mx-2 gap-2"> <!-- vertical -->
-                    <div>Attributes</div>
-                </div>
             </div>
 
         </div>
-    </div>
 
     <script src="dnd5eAPI.js"> </script>
 </body>
