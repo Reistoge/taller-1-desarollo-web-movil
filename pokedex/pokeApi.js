@@ -135,12 +135,17 @@ const addPokemons = async (left, right) => {
 
       // Decorate the cloned card (same as before)
       const clonedImage = clonedCard.querySelector("#card-prefab-center-image");
+      const clonedShinyImage = clonedCard.querySelector(
+        "#card-prefab-center-shiny-image"
+      );
       const clonedType1 = clonedCard.querySelector("#card-prefab-type1");
       const clonedType2 = clonedCard.querySelector("#card-prefab-type2");
       const clonedName = clonedCard.querySelector("#pokemon-span");
 
       // requesting the pokemon image
       const imageURL = data.sprites?.front_default || "";
+      const shinyImageURL = data.sprites?.front_shiny || "";
+
       if (clonedImage) {
         clonedImage.classList.remove(
           "opacity-100",
@@ -157,6 +162,18 @@ const addPokemons = async (left, right) => {
           );
         };
       }
+
+      clonedCard.onclick = () => {
+        if (clonedImage.src === imageURL) {
+          clonedImage.src = shinyImageURL;
+          clonedCard.classList.remove("border-transparent");
+          clonedCard.classList.add("border-4", "border-yellow-400");
+        } else if (clonedImage.src === shinyImageURL) {
+          clonedImage.src = imageURL;
+          clonedCard.classList.remove("border-yellow-400");
+          clonedCard.classList.add("border-4", "border-transparent");
+        }
+      };
 
       // request pokemon name
       const pokemonName = `#${i} ${data.name

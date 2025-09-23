@@ -10,39 +10,37 @@
 
 <body class="h-screen bg-blue-100">
     <h1 class="text-center text-5xl font-bold text-blue-400">Pokedex</h1>
-    <div class = "my-5">
+    <h4 class="text-center  font-bold text-blue-400">Click card to toggle between shiny and normal sprites</h4>
+    <div class="my-5">
         <nav id="gen-selector">
             <ul id="gen-container" class="flex flex-wrap gap-2 justify-center">
-                <li id="gen-text" class= "bg-indigo-300 bg-opacity-45 rounded font-bold ">
+                <li id="gen-text" class="bg-indigo-300 bg-opacity-45 rounded font-bold ">
                     <a class="px-4 py-2 hover:bg-gray-200 rounded block"></a>
                 </li>
             </ul>
         </nav>
 
     </div>
-    
-    <div id="cards-container" class="grid md:grid-cols-7  2xl: gap-4 md:gap-4 auto-rows-min justify-center ">
+
+    <div id="cards-container"
+        class="grid 2xl:mx-4 md:mx-4 md:grid-cols-7  2xl: gap-4 md:gap-4 auto-rows-min justify-center ">
 
 
-        <div id="card-prefab" class="bg-white rounded-lg shadow-md p-4 max-w-sm  ">
+        <div id="card-prefab" class=" bg-white rounded-lg shadow-md p-4  2xl:max-w-sm md:max-w-sm border-4 border-transparent">
             <!-- Top section with text and tiny image -->
             <div class="flex items-center justify-between mb-4">
-                <span id="pokemon-span" class="text-sm font-medium ">Card Title</span>
-                <img src="Pokeball-PNG-Image-Background-159933909.png"
-                    alt="tiny icon" class="w-1/12 h-auto aspect-square">
+                <span id="pokemon-span" class="text-sm font-medium">Card Title</span>
+                <img src="Pokeball-PNG-Image-Background-159933909.png" alt="tiny icon" class="w-6 h-6 object-contain">
             </div>
-
             <!-- Center image -->
-            <div class="flex justify-center">
-                <img id = "card-prefab-center-image" src="Symbol.png"
-                    alt="main image" class="w-3/4 h-auto aspect-square object-cover rounded">
+            <div class="flex justify-center mb-2">
+                <img id="card-prefab-center-image" src="Symbol.png" alt="main image" class="w-3/4 h-auto object-cover rounded">
             </div>
             <!-- Two inline colored texts above main image -->
-            <div class="flex gap-2 mb-2">
-                <span id= "card-prefab-type1"class="text-red-500 text-sm font-semibold">Type 1</span>
-                <span id= "card-prefab-type2" class="text-blue-500 text-sm font-semibold">Type 2</span>
+            <div class="flex gap-2">
+                <span id="card-prefab-type1" class="text-red-500 text-sm font-semibold">Type 1</span>
+                <span id="card-prefab-type2" class="text-blue-500 text-sm font-semibold">Type 2</span>
             </div>
-
         </div>
 
 
