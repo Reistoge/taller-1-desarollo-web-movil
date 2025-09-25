@@ -31,14 +31,26 @@
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
                 alt="Pokeball" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12">
         </button>
+        <!-- MAXIMO SARNO -->
         <button onclick="window.location.href='dnd_monsters/monsters.html'"
-            class="bg-orange-300 hover:bg-orange-500 text-white font-semibold rounded-lg transition duration-200 flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="w-8 sm:w-10 md:w-12">
-            <p class="mx-3 sm:mx-5 text-base text-xl  md:text-4xl 2xl:text-5xl">Nighght</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12">
+            class="relative overflow-hidden group
+                bg-gradient-to-r from-[#31556f] to-[#68acd1] 
+                text-white font-semibold rounded-lg 
+                flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
+
+            <!-- Solid overlay that fades out -->
+            <div class="absolute inset-0 bg-[#173042] transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
+
+            <!-- Button content -->
+            <div class="relative flex items-center justify-center">
+                <img src="dnd_monsters/img/d&d_logo.svg"
+                    alt="D&D_logo" class="w-8 sm:w-10 md:w-12"></img>
+                <p class="mx-3 sm:mx-5 text-base text-xl  md:text-4xl 2xl:text-5xl">D&D 5e Monsters</p>
+                <img src="dnd_monsters/img/d&d_logo.svg"
+                    alt="D&D_logo" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12"></img>
+            </div>
         </button>
+
         <button onclick="window.location.href='cli(E)ma/clima.html'"
             class="bg-orange-300 hover:bg-orange-500 text-white font-semibold rounded-lg transition duration-200 flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
