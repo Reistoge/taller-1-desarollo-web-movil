@@ -2,6 +2,15 @@
 <SECTION text= "">
 <\SECTION>
 
+                        <!-- image: fill wrapper width, keep aspect ratio, cap height -->
+                        <!-- <img
+                        src="fallback_img.png"
+                        class="p-2 w-full h-auto aspect-square object-cover rounded-lg" 
+                        alt="monster img"
+                        /> -->
+
+
+
             colors: {
                 transparent: 'transparent',
                 current: 'currentColor',
