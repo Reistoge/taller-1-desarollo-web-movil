@@ -13,57 +13,95 @@
     <h1 class="text-4xl md:text-7xl font-bold text-center mb-8 m-6 md:m-10 text-orange-100">Geek Tangerine</h1>
     <div class="bg-orange-100 flex flex-col gap-y-2 bg-indigo-500 bg-opacity-50 rounded-lg p-2 mx-2 sm:mx-10 md:mx-[25%]"
         id="pokemon-buttons">
-        
+
+        <!-- POKEDEX -->
         <button onclick="window.location.href='pokedex/poke.html'"
-            class="bg-orange-300 hover:bg-orange-500 text-white font-semibold rounded-lg transition duration-200 flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="w-8 sm:w-10 md:w-12">
-            <p class="mx-3 sm:mx-5 text-base text-xl md:text-4xl  2xl:text-5xl">Pokedex</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12">
+            class="relative overflow-hidden group
+                bg-gradient-to-r from-orange-500 to-red-600
+                font-semibold rounded-lg text-shadow-sm 
+                text-orange-600 hover:text-white transition duration-200
+                flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
+
+            <!-- Solid overlay that fades out -->
+            <div class="absolute inset-0 bg-orange-50 transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
+
+            <!-- Button content -->
+            <div class="relative flex items-center justify-center">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+                    alt="Pokeball" class="w-8 sm:w-10 md:w-12">
+                <p class="mx-3 sm:mx-5 text-base text-xl md:text-4xl  2xl:text-5xl">Pokedex</p>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+                    alt="Pokeball" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12">
+            </div>
         </button>
 
+        <!-- MAGIC -->
         <button onclick="window.location.href='magic/magic.html'"
-            class="bg-orange-300 hover:bg-orange-500 text-white font-semibold rounded-lg transition duration-200 flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="w-8 sm:w-10 md:w-12">
-            <p class="mx-3 sm:mx-5 text-base text-xl  md:text-4xl 2xl:text-5xl">Magic</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12">
+            class="relative overflow-hidden group
+                bg-gradient-to-r from-[#56b8b8] from-0% via-[#a34f94] via-50% to-[#bc2d29] to-100%
+                font-semibold rounded-lg text-shadow-sm 
+                text-violet-500 hover:text-white transition duration-200
+                flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
+
+            <!-- Solid overlay that fades out -->
+            <div class="absolute inset-0 bg-indigo-50 transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
+
+            <!-- Button content -->
+            <div class="relative flex items-center justify-center">
+                <img src="icons/MTG_logo.svg"
+                    alt="magic_logo" class="w-8 sm:w-10 md:w-12 h-14"></img>
+                <p class="mx-3 sm:mx-5 text-base mx-4 text-xl md:text-4xl 2xl:text-5xl">Magic</p>
+                <img src="icons/MTG_logo.svg"
+                    alt="magic_logo" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12 h-14"></img>
+            </div>
         </button>
 
         <!-- DND MONSTERS -->
         <button onclick="window.location.href='dnd_monsters/monsters.html'"
             class="relative overflow-hidden group
-                bg-gradient-to-r from-[#31556f] to-[#68acd1] 
-                text-white font-semibold rounded-lg text-shadow-sm
+                bg-gradient-to-r from-[#31556f] to-sky-300 
+                font-semibold rounded-lg text-shadow-sm
+                text-sky-500 hover:text-white transition duration-200
                 flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
 
             <!-- Solid overlay that fades out -->
-            <div class="absolute inset-0 bg-[#0f304a] transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
+            <div class="absolute inset-0 bg-sky-50 transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
 
             <!-- Button content -->
             <div class="relative flex items-center justify-center">
                 <img src="dnd_monsters/img/d&d_logo.svg"
-                    alt="D&D_logo" class="w-8 sm:w-10 md:w-12"></img>
+                    alt="cloud" class="w-8 sm:w-10 md:w-12"></img>
                 <p class="mx-3 sm:mx-5 text-base text-xl md:text-4xl 2xl:text-5xl">D&D 5e Monsters</p>
                 <img src="dnd_monsters/img/d&d_logo.svg"
+                    alt="cloud" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12"></img>
+            </div>
+        </button>
+
+        <!-- CLIMA -->
+        <button onclick="window.location.href='cli(E)ma/clima.html'"
+            class="relative overflow-hidden group
+                bg-gradient-to-r from-[#9c89f0] to-[#d4cbf9] 
+                font-semibold rounded-lg text-shadow-sm 
+                text-[#9c89f0] hover:text-white transition duration-200
+                flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
+
+            <!-- Solid overlay that fades out -->
+            <div class="absolute inset-0 bg-purple-50 transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
+
+            <!-- Button content -->
+            <div class="relative flex items-center justify-center">
+                <img src="icons/cloud.svg"
+                    alt="D&D_logo" class="w-8 sm:w-10 md:w-12"></img>
+                <p class="mx-3 sm:mx-5 text-base text-xl md:text-4xl 2xl:text-5xl">cli(E)ma</p>
+                <img src="icons/cloud.svg"
                     alt="D&D_logo" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12"></img>
             </div>
         </button>
 
-        <button onclick="window.location.href='cli(E)ma/clima.html'"
-            class="bg-orange-300 hover:bg-orange-500 text-white font-semibold rounded-lg transition duration-200 flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="w-8 sm:w-10 md:w-12">
-            <p class="mx-3 sm:mx-5 text-base text-xl  md:text-4xl 2xl:text-5xl">cli(E)ma</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12">
-        </button>
     </div>
 
-    <footer class="bg-orange-800 text-white font-semibold text-xs sm:text-sm pb-1 pl-2 py-4 mt-auto">
-        <p>Footer</p>
+    <footer class="bg-orange-700 text-white font-semibold text-xs sm:text-sm pb-1 pl-2 py-4 mt-auto">
+        <p>Taller 1 Desarrollo Web/Móvil</p>
     </footer>
     <style>
         @keyframes bgMove {
