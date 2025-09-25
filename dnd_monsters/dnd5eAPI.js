@@ -122,6 +122,18 @@ async function appendNextBatch() {
 
         imgObserver.observe(imgEl); // observe for lazy loading
     }
+
+    // Small monster type icon
+    const typeIconEl = clone.querySelector("img.type-icon");
+    if (typeIconEl) {
+      // file path based on monster type
+      const typeImg = `img/type_${data.type}.png`;
+
+      typeIconEl.src = typeImg;
+      typeIconEl.onerror = () => { // If anything fails show to fallback (e.g. type doesn't exist)
+        typeIconEl.src = fallbackImg; // fallback image
+      };
+    }
     
     container.appendChild(clone); // Append clone
   });
