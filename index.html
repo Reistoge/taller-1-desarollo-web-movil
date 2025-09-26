@@ -4,66 +4,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller 1</title>
+    <title>Geek tangarine</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="one-orange.png">
 </head>
 
 <body class="mb-0 min-h-screen flex flex-col bg-gray-800 animate-bgMove" style="background-image: url('orange.png')">
-    <h1 class="text-4xl md:text-7xl font-bold text-center mb-8 m-6 md:m-10 text-orange-100">Geek Tangerine</h1>
+    <h1 class="text-4xl md:text-7xl font-bold text-center mb-8 m-6 md:m-10 text-orange-100"></h1>
+
+
     <div class="bg-orange-100 flex flex-col gap-y-2 bg-indigo-500 bg-opacity-50 rounded-lg p-2 mx-2 sm:mx-10 md:mx-[25%]"
         id="pokemon-buttons">
-        
-        <button onclick="window.location.href='pokedex/poke.html'"
-            class="bg-orange-300 hover:bg-orange-500 text-white font-semibold rounded-lg transition duration-200 flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="w-8 sm:w-10 md:w-12">
-            <p class="mx-3 sm:mx-5 text-base text-xl md:text-4xl  2xl:text-5xl">Pokedex</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12">
+
+ 
+        <button onclick="window.location.href='pokedex/poke.html'" class="relative overflow-hidden group
+                bg-gradient-to-r  from-[#31556f] to-[#68acd1] 
+                text-white font-semibold rounded-lg text-shadow-sm
+                flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
+
+            <!-- Solid overlay that fades out -->
+            <div
+                class="absolute inset-0  bg-[#0f304a] transition-opacity duration-200 ease-in-out group-hover:opacity-0">
+            </div>
+
+            <!-- Button content -->
+            <div class="relative flex items-center justify-center">
+                <img src="./pokedex/image.png" alt="Pokedex Logo" class="w-24 sm:w-3xl md:w-64 2xl:w-80">
+
+            </div>
         </button>
 
-        <button onclick="window.location.href='magic/magic.html'"
-            class="bg-orange-300 hover:bg-orange-500 text-white font-semibold rounded-lg transition duration-200 flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="w-8 sm:w-10 md:w-12">
-            <p class="mx-3 sm:mx-5 text-base text-xl  md:text-4xl 2xl:text-5xl">Magic</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12">
-        </button>
 
-        <!-- DND MONSTERS -->
-        <button onclick="window.location.href='dnd_monsters/monsters.html'"
-            class="relative overflow-hidden group
+        <button onclick="window.location.href='magic/magic.html'" class="relative overflow-hidden group
                 bg-gradient-to-r from-[#31556f] to-[#68acd1] 
                 text-white font-semibold rounded-lg text-shadow-sm
                 flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
 
             <!-- Solid overlay that fades out -->
-            <div class="absolute inset-0 bg-[#0f304a] transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
+            <div
+                class="absolute inset-0 bg-[#0f304a] transition-opacity duration-200 ease-in-out group-hover:opacity-0">
+            </div>
 
             <!-- Button content -->
             <div class="relative flex items-center justify-center">
-                <img src="dnd_monsters/img/d&d_logo.svg"
-                    alt="D&D_logo" class="w-8 sm:w-10 md:w-12"></img>
-                <p class="mx-3 sm:mx-5 text-base text-xl md:text-4xl 2xl:text-5xl">D&D 5e Monsters</p>
-                <img src="dnd_monsters/img/d&d_logo.svg"
-                    alt="D&D_logo" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12"></img>
+                <img src="./magic/image.png" alt="Magic Logo" class="w-24 sm:w-3xl md:w-64 2xl:w-80">
+
             </div>
         </button>
 
-        <button onclick="window.location.href='cli(E)ma/clima.html'"
-            class="bg-orange-300 hover:bg-orange-500 text-white font-semibold rounded-lg transition duration-200 flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="w-8 sm:w-10 md:w-12">
-            <p class="mx-3 sm:mx-5 text-base text-xl  md:text-4xl 2xl:text-5xl">cli(E)ma</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-                alt="Pokeball" class="transform scale-x-[-1] w-8 sm:w-10 md:w-12">
+        <!-- DND MONSTERS -->
+        <button onclick="window.location.href='dnd_monsters/monsters.html'" class="relative overflow-hidden group
+                bg-gradient-to-r from-[#31556f] to-[#68acd1] 
+                text-white font-semibold rounded-lg text-shadow-sm
+                flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
+
+            <!-- Solid overlay that fades out -->
+            <div
+                class="absolute inset-0 bg-[#0f304a] transition-opacity duration-200 ease-in-out group-hover:opacity-0">
+            </div>
+
+            <!-- Button content -->
+            <div class="relative flex items-center justify-center">
+                <img src="./dnd_monsters/image.png" alt="Pokedex Logo" class="w-24 sm:w-3xl md:w-60 2xl:w-80">
+
+            </div>
         </button>
+
+
+
+        <button onclick="window.location.href='cli(E)ma/clima.html'" class="relative overflow-hidden group
+                bg-gradient-to-r from-[#31556f] to-[#68acd1] 
+                text-white font-semibold rounded-lg text-shadow-sm
+                flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
+
+            <!-- Solid overlay that fades out -->
+            <div
+                class="absolute inset-0 bg-[#0f304a] transition-opacity duration-200 ease-in-out group-hover:opacity-0">
+            </div>
+
+            <!-- Button content -->
+            <div class="relative flex items-center justify-center">
+                <img src="./cli(E)ma/image.png" alt="Open weather Logo" class="w-24 sm:w-3xl md:w-64 2xl:w-70">
+
+            </div>
+        </button>
+
     </div>
 
     <footer class="bg-orange-800 text-white font-semibold text-xs sm:text-sm pb-1 pl-2 py-4 mt-auto">
-        <p>Footer</p>
+        <p>By Emily Volta, Martin Ubilla, Ferran Rojas and Maximo Sarno </p>
     </footer>
     <style>
         @keyframes bgMove {
