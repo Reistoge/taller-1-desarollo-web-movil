@@ -7,102 +7,119 @@
     <title>Geek tangarine</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="one-orange.png">
+    <link rel="icon" type="image/png" href="img/one-orange.png">
+        <script>
+        tailwind.config = { theme: {
+            screens: {
+                'sm': '640px',  //160 units
+                'md': '768px',  //192 units
+                'lg': '1024px', //256 units
+                'xl': '1152px', //288 units (modified)
+                '2xl': '1536px',//384 units
+                '3xl': '1920px',//480 units (custom)
+            },
+        }}
+    </script>
 </head>
 
-<!-- style="background-image: url('orange.png') -->
-
-<body class=" mb-0 min-h-screen flex flex-col bg-gray-800 animate-bgMove" style="background-image: url('orange.png') ">
+<body class="h-screen flex flex-col bg-gray-800 animate-bgMove" style="background-image: url('img/orange.png')">
     <div class=" glitch-bg">
         <div class="glitch-bg-layer"></div>
         <div class="glitch-bg-layer top"></div>
-        
         <div class="glitch-bg-layer bottom"></div>
     </div>
-    <h1 class="text-4xl md:text-7xl font-bold text-center mb-8 m-6 md:m-10 text-orange-100">Geek Tangerine</h1>
+    
+    <!-- Header -->
+    <h1 class="text-center text-orange-100 font-bold text-4xl sm:text-5xl md:text-6xl
+    mt-8">Geek Tangerine</h1>
 
+    <!-- Buttons Container -->
+    <div id="buttons" class="flex flex-col bg-opacity-50 bg-orange-100
+    rounded-lg gap-2 p-2 my-4 mx-[5%] sm:mx-[10%] md:mx-[12.5%] lg:w-[768px] lg:mx-auto">
 
-    <div class="bg-orange-100 flex flex-col gap-y-2 bg-indigo-500 bg-opacity-50 rounded-lg p-2 mx-2 sm:mx-10 md:mx-[25%]"
-        id="pokemon-buttons">
-
-
-        <button onclick="window.location.href='pokedex/poke.html'" class="relative overflow-hidden group
-                bg-gradient-to-r  from-[#31556f] to-[#68acd1] 
-                text-white font-semibold rounded-lg text-shadow-sm
-                flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
+        <!-- EXAMPLE BUTTON --> 
+        <button 
+            class="relative group overflow-hidden flex justify-center hidden
+            h-24 sm:h-26 md:h-28 lg:h-30 xl:h-32
+            rounded-lg bg-gradient-to-r from-[#000000] to-[#FFFFFF]">
 
             <!-- Solid overlay that fades out -->
-            <div
-                class="absolute inset-0  bg-[#0f304a] transition-opacity duration-200 ease-in-out group-hover:opacity-0">
-            </div>
+            <div class="absolute inset-0 bg-[#1f2937] transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
 
             <!-- Button content -->
-            <div class="relative flex items-center justify-center">
-                <img src="./pokedex/image.png" alt="Pokedex Logo" class="w-24 sm:w-3xl md:w-64 2xl:w-80">
+            <div class="relative flex p-2 md:p-4">
+                <img src="./img/orange.png" alt="Logo" class="object-contain">
+            </div>
+        </button>
+        
+        <!-- POKEDEX -->
+        <button onclick="window.location.href='pokedex/poke.html'" 
+            class="relative group overflow-hidden flex justify-center
+            h-24 sm:h-26 md:h-28 lg:h-30 xl:h-32
+            rounded-lg bg-gradient-to-r from-orange-500 to-red-600">
 
+            <!-- Solid overlay that fades out -->
+            <div class="absolute inset-0 bg-[#1f2937] transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
+
+            <!-- Button content -->
+            <div class="relative flex p-2 md:p-4">
+                <img src="./img/pokedex.png" alt="Pokedex Logo" class="object-contain">
             </div>
         </button>
 
-
-        <button onclick="window.location.href='magic/magic.html'" class="relative overflow-hidden group
-                bg-gradient-to-r from-[#31556f] to-[#68acd1] 
-                text-white font-semibold rounded-lg text-shadow-sm
-                flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
+        <!-- MAGIC -->
+        <button onclick="window.location.href='pokedex/poke.html'" 
+            class="relative group overflow-hidden flex justify-center
+            h-24 sm:h-26 md:h-28 lg:h-30 xl:h-32
+            rounded-lg bg-gradient-to-r from-[#56b8b8] from-0% via-[#a34f94] via-50% to-[#bc2d29] to-100%">
 
             <!-- Solid overlay that fades out -->
-            <div
-                class="absolute inset-0 bg-[#0f304a] transition-opacity duration-200 ease-in-out group-hover:opacity-0">
-            </div>
+            <div class="absolute inset-0 bg-[#1f2937] transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
 
             <!-- Button content -->
-            <div class="relative flex items-center justify-center">
-                <img src="./magic/image.png" alt="Magic Logo" class="w-24 sm:w-3xl md:w-64 2xl:w-80">
-
+            <div class="relative flex p-2 md:p-4">
+                <img src="./img/magic.png" alt="Magic Logo" class="object-contain">
             </div>
         </button>
 
         <!-- DND MONSTERS -->
-        <button onclick="window.location.href='dnd_monsters/monsters.html'" class="relative overflow-hidden group
-                bg-gradient-to-r from-[#31556f] to-[#68acd1] 
-                text-white font-semibold rounded-lg text-shadow-sm
-                flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
+        <button onclick="window.location.href='dnd_monsters/monsters.html'" 
+            class="relative group overflow-hidden flex justify-center
+            h-24 sm:h-26 md:h-28 lg:h-30 xl:h-32
+            rounded-lg bg-gradient-to-r from-[#31556f] to-sky-300">
 
             <!-- Solid overlay that fades out -->
-            <div
-                class="absolute inset-0 bg-[#0f304a] transition-opacity duration-200 ease-in-out group-hover:opacity-0">
-            </div>
+            <div class="absolute inset-0 bg-[#1f2937] transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
 
             <!-- Button content -->
-            <div class="relative flex items-center justify-center">
-                <img src="./dnd_monsters/image.png" alt="Pokedex Logo" class="w-24 sm:w-3xl md:w-60 2xl:w-80">
-
+            <div class="relative flex p-2 md:p-4">
+                <img src="./img/d&d.png" alt="D&D Logo" class="object-contain">
             </div>
         </button>
 
-
-
-        <button onclick="window.location.href='cli(E)ma/clima.html'" class="relative overflow-hidden group
-                bg-gradient-to-r from-[#31556f] to-[#68acd1] 
-                text-white font-semibold rounded-lg text-shadow-sm
-                flex items-center justify-center h-16 sm:h-20 md:h-24 2xl:h-32">
+        <!-- CLIMA -->
+        <button onclick="window.location.href='cli(E)ma/clima.html'"
+            class="relative group overflow-hidden flex justify-center
+            h-24 sm:h-26 md:h-28 lg:h-30 xl:h-32
+            rounded-lg bg-gradient-to-r from-[#9c89f0] to-[#d4cbf9]">
 
             <!-- Solid overlay that fades out -->
-            <div
-                class="absolute inset-0 bg-[#0f304a] transition-opacity duration-200 ease-in-out group-hover:opacity-0">
-            </div>
+            <div class="absolute inset-0 bg-[#1f2937] transition-opacity duration-200 ease-in-out group-hover:opacity-0"></div>
 
             <!-- Button content -->
-            <div class="relative flex items-center justify-center">
-                <img src="./cli(E)ma/image.png" alt="Open weather Logo" class="w-24 sm:w-3xl md:w-64 2xl:w-70">
-
+            <div class="relative flex p-2 md:p-4">
+                <img src="./img/openweather.png" alt="D&D Logo" class="object-contain">
             </div>
         </button>
 
     </div>
 
-    <footer class="bg-orange-800 text-white font-semibold text-xs sm:text-sm pb-1 pl-2 py-4 mt-auto">
-        <p>By Emily Volta, Martin Ubilla, Ferran Rojas and Maximo Sarno </p>
+    <!-- Footer -->
+    <footer class="bg-orange-600 text-white font-semibold text-xs sm:text-sm p-2 mt-auto shadow-md shadow-red-800/50">
+        <p>By Ferran Rojas, Martin Ubilla, Maximo Sarno, and Emily Volta</p>
     </footer>
+
+    <!-- Custom CSS for animations and effects -->
     <style>
         @keyframes bgMove {
             0% {
@@ -141,7 +158,7 @@
             inset: 0;
             width: 100vw;
             height: 100vh;
-            /* background: url('orange.png') repeat; */
+            /* background: url('img/orange.png') repeat; */
             image-rendering: pixelated;
             filter: drop-shadow(2px 0 #ff00c166) drop-shadow(-2px 0 #00f4ff66);
             animation: glitch var(--speed) infinite;
@@ -149,7 +166,7 @@
 
         .glitch-bg-layer.top {
             filter: drop-shadow(5px 0 #081529);
-            background: url('orange.png');
+            background: url('img/orange.png');
             
             opacity: .6;
             left: 20px;
@@ -158,7 +175,7 @@
 
         .glitch-bg-layer.bottom {
             filter: drop-shadow(-5px 0 #081529);
-            background: url('orange.png');
+            background: url('img/orange.png');
             opacity: 0.6;
             left: 0px;
             animation: glitch-bottom var(--speed-bottom) infinite;
