@@ -20,9 +20,20 @@
             },
         }}
     </script>
+    <style>
+        body {
+            cursor: url("img/cursor-orange.png") 4 4, auto;
+        }
+
+        #buttons button:hover {
+            cursor: url("img/cursor-hover-orange.png") 4 4, pointer;
+        }
+  </style>
 </head>
 
-<body class="h-screen flex flex-col bg-gray-800 animate-bgMove" style="background-image: url('img/orange.png')">
+<body class="h-screen flex flex-col bg-[#1f2937] animate-bgMove" 
+      style="background-image: linear-gradient(rgba(20,30,45,0.4), rgba(20,30,45,0.4)), url('img/orange.png');">
+    
     <div class=" glitch-bg">
         <div class="glitch-bg-layer"></div>
         <div class="glitch-bg-layer top"></div>
