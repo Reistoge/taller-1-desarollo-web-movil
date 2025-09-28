@@ -15,7 +15,7 @@
 
 #### 2. Magic
 
-- **API:** [Scryfall](https://api.scryfall.com)
+- **API:** [Scryfall]([https://api.scryfall.com](https://scryfall.com/))
 
 #### 3. Dungeond & Dragons
 
